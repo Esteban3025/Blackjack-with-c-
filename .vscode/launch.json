@@ -1,0 +1,16 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Ejecutar en CMD",
+        "type": "shell",
+        "command": "cmd.exe",
+        "args": [
+          "/c",
+          "start cmd /k programa.exe"
+        ],
+        "problemMatcher": []
+      }
+    ]
+  }
+  
