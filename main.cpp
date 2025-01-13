@@ -51,7 +51,7 @@ void game() {
             std::random_device rd;
             std::mt19937 gen(rd());
 
-            std::uniform_int_distribution<> dis(1, 13);
+            std::uniform_int_distribution<> dis(1, 10);
 
             int crupier_carta1 = dis(gen);
             int crupier_carta2 = dis(gen);
@@ -61,9 +61,22 @@ void game() {
             
             cout << "\n";
 
-            cout << "Cartas del Crupier: " << crupier_carta1 << " y " << crupier_carta2 << endl;
+            cout << "Cartas del Crupier: " << "[" << crupier_carta1 << "]" << "[" << crupier_carta2 << "]" <<endl;
 
-            cout << "Cartas del Jugador: " << jugador_carta1 << " y " << jugador_carta2 << endl;
+            cout << "Tus cartas: " << "[" << jugador_carta1 << "]" << "[" << jugador_carta2 << "]" <<endl;
+
+            int option2;
+            cout << "1. Plantarse" << endl;
+            cout << "2. Pedir otra carta" << endl;
+            cin >> option2;
+
+            if (option2 == 1) {
+                int result = jugador_carta1 + jugador_carta2;
+                int result2 = crupier_carta1 + crupier_carta2;
+                if (result > result2 || result < 21) {    
+                    
+                }
+            }
 
             /*
             for (int i = 1; i < 2; i++) {
