@@ -8,7 +8,7 @@ using namespace std;
 std::random_device rd;
 std::mt19937 gen(rd());
 
-std::uniform_int_distribution<> dis(1, 21);
+std::uniform_int_distribution<> dis(1, 13);
 
             
 int clave, option;
@@ -20,6 +20,8 @@ void billetera();
 void findmesa();
 void lost();
 void win();
+void jugadorpedircarta();
+void crupierpedircarta();
 
 // CLASE PARA EL JUGADOR
 class Player {
@@ -90,30 +92,49 @@ void findmesa() {
     std::cout << "2. 1000 $" << std::endl;
     std::cout << "3. 10000 $" << std::endl;
     std::cin >> option;
-    /*
-    if (option == 1) {crupier.apuesta = 100;
-    } else if (option == 2) {crupier.apuesta = 1000;
-    } else if (option = 3) {crupier.apuesta = 10000;}
-    */
+
     for (int i = 0; i < 2; i++)
     {
         crupier.cartas.push_back(dis(gen));
         jugador.cartas.push_back(dis(gen));
     }
-    cout << "Cartas del jugador: " << endl;
+    cout << "Cartas del jugador: ";
     for (int i = 0; i < 2; i++)
     {
-        cout << jugador.cartas[i] << endl;   
+        cout << jugador.cartas[i] << " ";   
     }
-    cout << "Cartas de la banca: " << endl;
+    cout << "\n";
+    cout << "Cartas de la banca: ";
     for (int i = 0; i < 2; i++)
     {
-        cout << crupier.cartas[i] << endl;
+        cout << crupier.cartas[i] << " ";
+    }
+    cout << "\n";
+
+    if (jugador.cartas[0] >= 21 || jugador.cartas[1] >= 21) lost();
+    else if (crupier.cartas[0] >= 21 || crupier.cartas[1] >= 21) win();
+
+    cout << "1. Pedir carta" << std::endl;
+    cout << "2. Plantarse" << std::endl;
+    cin >> option;
+
+    if (option == 1) {
+        jugadorpedircarta();
+        crupierpedircarta();
+        cout << "Cartas del jugador: ";
+        for (int i = 0; i < 3; i++)
+        {
+            cout << jugador.cartas[i] << " ";   
+        }
+        cout << "\n";
+        cout << "Cartas de la banca: ";
+        for (int i = 0; i < 2; i++)
+        {
+            cout << crupier.cartas[i] << " ";
+        }
+        cout << "\n";
     }
 
-    if (jugador.cartas[0] >= 21 || jugador.cartas[1] >= 21) {
-            lost();
-        }
 }
   
 void lost() {
@@ -165,6 +186,26 @@ void win() {
     cout << "Has perdido la apuesta, te quedas con: " << jugador.cash << "$" << endl;
     }
     menu();
+}
+
+
+/*Usar punteros para enviar el numeoro correcto en cartas, crear una funcion para pedir cartas para el jugador y la banca, usando punteros en vestores, y para en ves de poner un numero para recorrer el vector usar una funcion especial para que recorra todo el vector sin importar el tamaño */
+
+void jugadorpedircarta() {
+    Player jugador;
+    for (int i = 0; i < 2; i++)
+    {
+        jugador.cartas.push_back(dis(gen));
+    }
+}
+
+
+void crupierpedircarta() {
+    Banca crupier;
+    for (int i = 0; i < 2; i++)
+    {
+        crupier.cartas.push_back(dis(gen));
+    }
 }
 
 //FUNCION PRINCIPAL DEL PROGRAMA
