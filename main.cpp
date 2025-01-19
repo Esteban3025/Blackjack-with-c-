@@ -8,7 +8,7 @@ using namespace std;
 std::random_device rd;
 std::mt19937 gen(rd());
 
-std::uniform_int_distribution<> dis(1, 13);
+std::uniform_int_distribution<> dis(1, 21);
 
             
 int clave, option;
